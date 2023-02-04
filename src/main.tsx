@@ -1,9 +1,17 @@
-import Home from "@/pages/home";
+import Root from "@/pages";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Home />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Root />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
