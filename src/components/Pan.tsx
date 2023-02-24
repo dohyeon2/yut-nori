@@ -4,16 +4,10 @@ import { useState } from "react";
 
 const Pan: React.FC = () => {
   const [yutCombination, setYutCombination] = useState<YutCombination>();
-  const [yutFlipped, setYutFlipped] = useState<boolean[]>([
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const { panRef } = usePan();
+  const { pan } = usePan();
 
   const rollYut = () => {
-    const result = panRef.current.rollYut();
+    const result = pan.rollYut();
     setYutCombination(result);
   };
   return (
@@ -23,7 +17,11 @@ const Pan: React.FC = () => {
         <input readOnly value={yutCombination} />
       </div>
       <div>
-        {panRef.current.yutSet.yuts.map((yut) => (
+        <label>히스토리</label>
+        <input readOnly value={[...pan.yutSet.history].reverse()}></input>
+      </div>
+      <div>
+        {pan.yutSet.yuts.map((yut) => (
           <input
             readOnly
             value={yut.isFlipped ? "뒤" + (yut.backDo ? " 백도" : "") : "앞"}

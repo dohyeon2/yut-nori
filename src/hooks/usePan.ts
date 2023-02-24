@@ -1,15 +1,12 @@
 import Pan from "@/classes/Pan";
 import YutSet from "@/classes/YutSet";
-import { useRef } from "react";
+import { useState } from "react";
 
 const usePan = () => {
-  const panRef = useRef<Pan>(
-    new Pan({
-      yutSet: new YutSet(),
-    })
-  );
+  const [pan, setPan] = useState(new Pan({ yutSet: new YutSet() }));
   return {
-    panRef,
+    pan,
+    setPan,
   };
 };
 export default usePan;
